@@ -2,6 +2,7 @@ const passport = require('passport');
 
 module.exports = function(app){
 
+
 	app.get(
 		'/callback',
 		passport.authenticate('auth0', {
