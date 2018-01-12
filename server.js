@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+const passport = require('passport');
 require('./services/passport');
 
 // Sets up the Express App
@@ -24,6 +25,10 @@ app.use(express.static("public"));
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 // =============================================================
