@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "appuser",
-    "password": "goofy1229",
+    "username": "root",
+    "password": null,
     "database": "crashPad",
     "host": "127.0.0.1",
     "dialect": "mysql"
