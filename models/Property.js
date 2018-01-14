@@ -19,10 +19,11 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Property.associate = function (models) {
-        Property.belongsTo(models.Address,{
+        Property.hasOne(models.Address,{
             foreignKey: {
                 allowNull: false
-            }
+            },
+            onDelete: "cascade"
         });
         Property.belongsTo(models.Landlord, {
             foreignKey: {

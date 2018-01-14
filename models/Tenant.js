@@ -8,7 +8,8 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Tenant.associate = function (models) {
-        Tenant.belongsTo(models.TenantInfo,{
+        Tenant.hasOne(models.TenantInfo, {
+            onDelete: "cascade"
         });
         Tenant.hasMany(models.Application, {
             onDelete: "cascade"

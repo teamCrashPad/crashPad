@@ -21,5 +21,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    Address.associate = function (models) {
+        Address.belongsTo(models.Property,{
+            onDelete: "cascade"
+        });
+    };
+
     return Address;
 };

@@ -18,5 +18,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    TenantInfo.associate = function (models) {
+        TenantInfo.belongsTo(models.Tenant,{
+            onDelete: "cascade"
+        });
+    };
+
     return TenantInfo;
 };
