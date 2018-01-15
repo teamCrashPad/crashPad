@@ -19,6 +19,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/tenants", function (req, res) {
+        console.log(req.body);
         db.Tenant.create(req.body).then(function (dbTenant) {
             res.json(dbTenant);
         });
