@@ -4,16 +4,18 @@ var methodOverride = require("method-override");
 const passport = require('passport');
 var exphbs = require("express-handlebars");
 
+// Sets up the Express App
+// =============================================================
+var app = express();
+var PORT = process.env.PORT || 8080;
+
 //Handlebars setup
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 require('./services/passport');
 
-// Sets up the Express App
-// =============================================================
-var app = express();
-var PORT = process.env.PORT || 8080;
+
 
 // Requiring our models for syncing
 var db = require("./models");
