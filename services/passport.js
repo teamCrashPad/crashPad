@@ -25,20 +25,7 @@ passport.use(
 	})
 );
 
-passport.use(
-	new Auth0Strategy(
-	{
-	domain: keys.auth0domainManager,
-	clientID: keys.auth0ClientIDManager,
-	clientSecret: keys.auth0ClientSecretManager,
-	callbackURL: '/landlord/callback'
-}, function(accessToken, refreshToken, extraParams, profile, done){
-	console.log('access token: ', accessToken);
-	console.log('refreh token: ', refreshToken);
-	console.log('profile: ', profile);
-	return done(null, profile);
-	})
-);
+
 
 
 
