@@ -27,13 +27,14 @@ module.exports = function(app){
 		res.redirect("/");
 	});
 
-
-};
-
-app.get('/lanlord/login', passport.authenticate('auth0', {scope: ['profile', 'email']}), function(req, res){
+  app.get('/lanlord/login', passport.authenticate('auth0', {scope: ['profile', 'email']}), function(req, res){
     res.redirect("/");
   });
 
 
 };
+
+
+
+
 
