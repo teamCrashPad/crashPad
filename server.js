@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 const passport = require('passport');
 var exphbs = require("express-handlebars");
-
+var path = require('path');
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -27,7 +27,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -38,6 +38,8 @@ app.set("view engine", "handlebars");
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 // Routes
 // =============================================================
 //require("./routes/html-routes.js")(app);
@@ -45,7 +47,7 @@ require('./routes/authRoutes')(app);
 require('./routes/tenant-api-routes')(app);
 require('./routes/landlord-api-routes')(app);
 require('./routes/property-api-routes')(app);
-
+require('./routes/pageRoutes')(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({}).then(function() {
