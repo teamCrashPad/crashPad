@@ -1,5 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
     var Tenant = sequelize.define("Tenant", {
+        id:
+            {
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,

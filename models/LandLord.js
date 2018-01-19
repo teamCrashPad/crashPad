@@ -20,6 +20,11 @@ module.exports = function (sequelize, DataTypes) {
         phone: {
             type: DataTypes.STRING,
             allowNull: true
+        }, 
+        isLandlord: {
+            type: DataTypes.STRING,
+            allowNull:true,
+            len: [1]
         }
     });
 

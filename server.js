@@ -2,6 +2,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 const passport = require('passport');
+const cookieSession = require('cookie-session');
+const keys = require('./config/keys');
 var exphbs = require("express-handlebars");
 var path = require('path');
 // Sets up the Express App
@@ -25,7 +27,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
+app.use(
+	cookieSession({
+		maxAge: 30 * 24 * 60 * 60 * 1000,
+		keys: [keys.cookieKey]
+	})
+);
 // Static directory
 app.use(express.static(path.join(__dirname, '/public')));
 
