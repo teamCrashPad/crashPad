@@ -1,8 +1,53 @@
+{{!-- =============Link to stylesheet/js file============ --}}
+
+<link rel="stylesheet" href="/assets/css/landlord.css">
+<script src="/assets/js/landlord.js"></script>
+
+{{!-- ================Begin HTML================= --}}
+
 <div class="container">
     <div class="row">
-        <div class="col-md-12 text-center" style="background-color:yellow">
-            <h2><span class="glyphicon glyphicon-dashboard"></span> Management Dashboard</h2>
-        </div>
+        <br />
+        <br />
+        <div class="col-md-12">
+            
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-dashboard"></span> Dashboard Home</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12" id="management-dashboard-side-panel">
+                           <p id="dash-home">Dashboard Home</p>
+                           <p id="manage-props">Manage Properties</p>
+                           <p id="manage-apps">Manage Applications</p>
+                        </div>
+                    </div>
+                   <div class="row">
+                       {{!-- <div class="col-md-2" id="management-dashboard-side-panel">
+                           <p class="text-center" id="dash-home">Dashboard Home</p>
+                           <p class="text-center" id="manage-props">Manage Properties</p>
+                           <p class="text-center" id="manage-apps">Manage Applications</p>
+                       </div> --}}
+                       <div class="col-md-12" id="dash-body">
+                           <div class="dash-body-div" id="home-div">
+                               <h2 class="text-center">Welcome to your dashboard, {{name}}!</h2>
+                               <br />
+                           </div>
+                           <div class="dash-body-div" id="manage-props-div">
+                               <p>props div</p>
+                           </div>
+                           <div class="dash-body-div" id="manage-apps-div">
+                               <p>apps div</p>
+                           </div>
+                       </div>
 
+                   </div>
+                </div>
+            </div>
+            
+        </div>
     </div>
+
+
 </div>
