@@ -14,7 +14,8 @@ module.exports = function (app) {
                 id: req.params.id
             }
         }).then(function (dbProperty) {
-            res.json(dbProperty);
+            //res.json(dbProperty);
+            res.render("propertyDetail", {name: dbProperty.name});
         });
     });
 
