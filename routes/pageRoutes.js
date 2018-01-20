@@ -17,8 +17,10 @@ module.exports = function (app) {
     })
 
     app.get("/search/:search_query", function (req, res) {
-        query: req.params.id
+        query: req.params.search_query
         res.render("searchresults");
+        res.json(query);
+
     });
 
 }
