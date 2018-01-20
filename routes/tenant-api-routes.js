@@ -2,14 +2,14 @@ var db = require("../models");
 
 module.exports = function (app) {
     app.get("/api/tenants", function (req, res) {
-        db.Tenant.findAll({include: [db.TenantInfo, db.Application]}).then(function (dbTenant) {
+        db.Tenant.findAll({include: [db.Application]}).then(function (dbTenant) {
             res.json(dbTenant);
         });
     });
 
     app.get("/api/tenant/:id", function (req, res) {
         db.Tenant.findOne({
-            include: [db.TenantInfo, db.Application],
+            include: [db.Application],
             where: {
                 id: req.params.id
             }

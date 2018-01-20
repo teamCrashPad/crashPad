@@ -15,4 +15,15 @@ module.exports = function (app) {
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
         res.render("landlord", {name: req.user.firstName});
     })
+
+    app.get("/search/:search_query", function (req, res) {
+       var query = req.params.search_query
+
+        res.render("searchresults", {
+            searchquery: query
+        });
+        // res.send(query);
+
+    });
+
 }
