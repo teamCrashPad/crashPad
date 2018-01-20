@@ -15,9 +15,14 @@
         <label class="sr-only" for="exampleInputAmount">Search for an apartment</label>
         <div class="input-group">
             <input id="hero-input" type="text" class="form-control" id="exampleInputAmount" placeholder="Apartment Near BYU">
-            <div id="search" class="hero-input-search input-group-addon">
+            <div id="search" class="hero-input-search input-group-addon" onclick="search()">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </div>
+        </div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true">
+
+            </span>
         </div>
     </div>
 </div>
@@ -40,6 +45,7 @@
 </div>
 
 <div class="homepage_listings">
+    <h2 class="text-center">Recent Listings</h2>
     <div class="container dflex">
 
         <div class="col-md-4 recent_listings ">
@@ -102,3 +108,13 @@
         © 2018 Student Crash Pad, LLC. All Rights Reserved
     </p>
 </footer>
+
+<script>
+    //route = /search/
+    function search(){
+        var searchQuery = document.querySelector('#hero-input').value;
+        console.log(searchQuery)
+
+        window.location.href = '/search/'+searchQuery
+    }//search()
+</script>

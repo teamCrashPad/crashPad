@@ -15,4 +15,10 @@ module.exports = function (app) {
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
         res.render("landlord");
     })
+
+    app.get("/search/:search_query", function (req, res) {
+        query: req.params.id
+        res.render("searchresults");
+    });
+
 }
