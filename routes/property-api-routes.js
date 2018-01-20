@@ -2,20 +2,32 @@ var db = require("../models");
 
 module.exports = function (app) {
     app.get("/api/properties", function (req, res) {
-        db.Property.findAll({include: [db.Landlord, db.Application]}).then(function (dbProperty) {
+        db.Property.findAll({include: [db.Landlord, db.Address, db.Application]}).then(function (dbProperty) {
             res.json(dbProperty);
         });
     });
 
     app.get("/api/property/:id", function (req, res) {
         db.Property.findOne({
-            include: [db.Landlord, db.Application],
+            include: [db.Landlord, db.Address, db.Application],
             where: {
                 id: req.params.id
             }
         }).then(function (dbProperty) {
             //res.json(dbProperty);
-            res.render("propertyDetail", {name: dbProperty.name});
+            console.log(dbProperty);
+            res.render("propertyDetail", {
+                name: dbProperty.name,
+                price: dbProperty.price,
+                capacity:  dbProperty.capacity,
+                address1:  dbProperty.Address.dataValues.addressLine1,
+                address2:  dbProperty.Address.dataValues.addressLine2,
+                city:  dbProperty.Address.dataValues.city,
+                state:  dbProperty.Address.dataValues.state,
+                zip:  dbProperty.Address.dataValues.zip,
+                landlordEmail:  dbProperty.Landlord.dataValues.email,
+                landlord:  dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName
+            });
         });
     });
 
