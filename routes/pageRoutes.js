@@ -13,6 +13,6 @@ module.exports = function (app) {
     })
 
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
-        res.render("landlord");
+        res.render("landlord", {name: req.user.firstName});
     })
 }

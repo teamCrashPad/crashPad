@@ -1,0 +1,24 @@
+#management-dashboard-side-panel{
+    padding:0px;
+    background-color:#f7f7f7;
+    border-bottom:solid;
+    border-bottom-width:1px;
+    border-bottom-color: #d4d4d4;
+}
+#management-dashboard-side-panel p{
+    float:left;
+    margin:0px;
+    font-weight:bold;
+    padding:8px;
+    /* border-right:solid;
+    border-right-width:1px;
+    border-right-color: #d4d4d4; */
+    transition:color .5s ease;
+}
+#management-dashboard-side-panel p:hover{
+    color:#b1b1b3;
+    cursor:pointer;
+}
+.panel-body{
+    padding-top:0px;
+}
