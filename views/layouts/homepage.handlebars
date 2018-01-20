@@ -99,12 +99,14 @@
         .homepage_listings {
             background-color: #FFD266;
             min-height: 350px;
-            padding:53px;
+            padding: 53px;
         }
 
         .recent_listings {
             background: #fff;
             width: 300px;
+            padding: 20px;
+
         }
 
         .listing_head_info {
@@ -132,6 +134,58 @@
 
         .listing_img {
             width: 265px;
+        }
+
+        .center_listing {
+            margin: 0px 120px;
+        }
+
+        @media screen and (max-width:1199px) {
+            .center_listing {
+                margin: 0px 20px!important;
+            }
+        }
+
+        @media screen and (max-width:1059px) {
+            .center_listing {
+                margin: 0px 0px!important;
+            }
+        }
+
+        @media screen and (max-width:428px) {
+            .homepage_listings {
+                padding: 47px;
+            }
+        }
+
+        @media screen and (max-width:398px) {
+            .homepage_listings {
+                padding: 20px 22px;
+            }
+        }
+
+        @media screen and (max-width:358px) {
+            .homepage_listings {
+                padding: 20px 10px;
+            }
+        }
+
+
+        .image_group {
+            background-image: url(/assets/Images/image_group.jpg);
+            height: 300px;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .footer {
+            background: #b7b7b7;
+            color: white;
+            padding-top: 25px;
+            padding-bottom: 10px;
+            text-align: center;
         }
     </style>
 </head>
