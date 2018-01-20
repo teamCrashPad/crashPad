@@ -10,13 +10,28 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             len: [1]
+        },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            len: [1]
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
+
     });
 
     Tenant.associate = function (models) {
-        Tenant.hasOne(models.TenantInfo, {
-            onDelete: "cascade"
-        });
+       
         Tenant.hasMany(models.Application, {
             onDelete: "cascade"
         });

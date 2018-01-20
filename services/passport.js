@@ -2,7 +2,6 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0').Strategy;
 const keys = require('../config/keys');
 var db = require("../models");
-var User = require('../models/Tenant');
 var request = require("request");
 
 
@@ -37,9 +36,6 @@ passport.use(
 	clientSecret: keys.auth0ClientSecret,
 	callbackURL: '/callback'
 }, function(accessToken, refreshToken, extraParams, profile, done){
-	// console.log('access token: ', accessToken);
-	// console.log('refreh token: ', refreshToken);
-	// console.log(profile);
 
 	var email = profile.emails[0].value;
 	var user_medata ="";
@@ -65,8 +61,8 @@ passport.use(
 	 var isLandlord = body[0].user_metadata.is_landlord;
 	 var fname = body[0].user_metadata.fname;
 	 var lname = body[0].user_metadata.lname;
-	 //finding user in DB
 
+	 //finding user in DB
 	 if(isLandlord == "true"){
 	 	db.Landlord.findOne({where: {email: profile.emails[0].value}})
 	 	.then((existingUser)=>{
@@ -96,18 +92,20 @@ passport.use(
 		 	db.Tenant.findOne({where: {email: profile.emails[0].value}})
 		.then((existingUser)=>{
 			if (existingUser) {
-				//already have a record with the given profile email
 
+				//already have a record with the given profile email
 				done(null, existingUser);
 				
 			}else{
-				console.log("no tenant with that email");
+				
 				//make a new record
 				const tenant = db.Tenant.build({
-					email: profile.emails[0].value
+					email: profile.emails[0].value,
+					firstName: fname,
+					lastName: lname
+
 				});
-				// new User({googleId: profile.id})
-				// .save()
+				
 				tenant.save()
 				 .then(user => done(null, user));
 
