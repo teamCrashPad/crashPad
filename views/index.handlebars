@@ -13,12 +13,15 @@
 
     <div class="hero-form form-group text-center">
         <label class="sr-only" for="exampleInputAmount">Search for an apartment</label>
-        <div class="input-group">
-            <input id="hero-input" type="text" class="form-control" id="exampleInputAmount" placeholder="Apartment Near BYU">
-            <div id="search" class="hero-input-search input-group-addon" onclick="search()">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <form onsubmit="search()">
+            <div class="input-group">
+                <input id="hero-input" type="text" class="form-control" id="exampleInputAmount" placeholder="Apartment Near BYU">
+                <div id="search" class="hero-input-search input-group-addon" onclick="search()">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </div>
             </div>
-        </div>
+        </form>
+
         <div>
             <span class="glyphicon glyphicon-chevron-down" aria-hidden="true">
 
@@ -111,10 +114,12 @@
 
 <script>
     //route = /search/
-    function search(){
+    function search() {
+        event.preventDefault();
+
         var searchQuery = document.querySelector('#hero-input').value;
         console.log(searchQuery)
 
-        window.location.href = '/search/'+searchQuery
+        window.location.href = '/search/' + searchQuery
     }//search()
 </script>

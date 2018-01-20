@@ -19,6 +19,10 @@
             width: 210px;
         }
 
+        .nav{
+            text-transform: uppercase;
+        }
+
         .navbar {
             margin-bottom: 0px !important;
             background:#fff;
@@ -57,9 +61,9 @@
                         <a href="#">Account</a>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right pull-right">
+                <form class="navbar-form navbar-right pull-right" onsubmit="search()">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input id="nav_search" type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
@@ -69,6 +73,17 @@
         <!-- /.container-fluid -->
     </nav>
     {{{body}}}
+
+<script>
+    //route = /search/
+    function search(){
+        event.preventDefault();
+        var searchQuery = document.querySelector('#nav_search').value;
+        console.log(searchQuery)
+
+        window.location.href = '../search/'+searchQuery;
+    }//search()
+</script>
 </body>
 
 </html>
