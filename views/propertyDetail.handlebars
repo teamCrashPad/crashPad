@@ -1,16 +1,32 @@
 <link rel="stylesheet" href="/assets/css/homepage.css">
-<script src="/assets/js/props.js"></script>
+<script src="/assets/js/prop.js"></script>
 
-<h2 class="text-center">Property: {{name}}</h2>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 text-center">
-            <p>Price ${{price}}</p>
+<div class="row">
+    <div class="col-md-4 recent_listings center_listing">
+        <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
+        <div class="listing_head_info">
+            <h3 class="listing_title">{{name}}</h3>
+            <h3 class="rent">${{price}}</h3>
         </div>
-        <div class="col-md-4 text-center">
-            <p>Owner {{landlord}}</p>
+        <p class="listing_address">
+            {{address1}}, {{address2}}
+            <br> {{city}}, {{state}} {{zip}}
+        </p>
+    </div>
+    <div class="col-md-8 recent_listings center_listing">
+        <div>Landlord Info</div>
+        <div class="listing_head_info">
+            <h3 class="listing_title">{{landlord}}</h3>
         </div>
+        <p class="rent">{{landlordEmail}}</p>
     </div>
 </div>
-
+<div class="row">
+    <div class="col-md-4" >
+    </div>
+    <div class="col-md-4" >
+        <button id="applyFor" type="button" class="btn btn-warning">Apply to This Property</button>
+    </div>
+    <div class="col-md-4" >
+    </div>
+</div>

@@ -15,7 +15,8 @@ module.exports = function (app) {
             }
         }).then(function (dbProperty) {
             //res.json(dbProperty);
-            console.log(dbProperty);
+            //console.log(dbProperty);
+            //console.log("... req user: " + req.user.id);
             res.render("propertyDetail", {
                 name: dbProperty.name,
                 price: dbProperty.price,
@@ -32,7 +33,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/properties", function (req, res) {
-        console.log(req.body);
+        //console.log(req.body);
         db.Property.create(req.body,{include: [db.Landlord, db.Address]}).then(function (dbProperty) {
             res.json(dbProperty);
         });
