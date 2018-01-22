@@ -34,7 +34,7 @@ module.exports = function (app) {
 
     app.post("/api/properties", function (req, res) {
         //console.log(req.body);
-        db.Property.create(req.body,{include: [db.Landlord, db.Address]}).then(function (dbProperty) {
+        db.Property.create(req.body,{include: [db.Address]}).then(function (dbProperty) {
             res.json(dbProperty);
         });
     });
