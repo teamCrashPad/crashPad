@@ -24,18 +24,21 @@
                         </div>
                     </div>
                    <div class="row">
-                       {{!-- <div class="col-md-2" id="management-dashboard-side-panel">
-                           <p class="text-center" id="dash-home">Dashboard Home</p>
-                           <p class="text-center" id="manage-props">Manage Properties</p>
-                           <p class="text-center" id="manage-apps">Manage Applications</p>
-                       </div> --}}
                        <div class="col-md-12" id="dash-body">
                            <div class="dash-body-div" id="home-div">
                                <h2 class="text-center">Welcome to your dashboard, {{name}}!</h2>
                                <br />
                            </div>
                            <div class="dash-body-div" id="manage-props-div">
-                               <p>props div</p>
+                               {{#if isProperties}}
+                                    <h2>You have properties</h2>
+                                {{else}}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Uh oh - It looks like you don't have any properties to manage. Click the green button below to get started.</p>
+                                </div>
+                               {{/if}}
+                               <button id="add-prop-button" type="button" class="btn btn-success" data-toggle="modal" href='#modal-id'><span class="glyphicon glyphicon-plus"></span>Add Property</button>
+                               
                            </div>
                            <div class="dash-body-div" id="manage-apps-div">
                                <p>apps div</p>
@@ -49,5 +52,39 @@
         </div>
     </div>
 
+    
+    <div class="modal fade" id="modal-id">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Property</h4>
+                </div>
+                <div class="modal-body">
+                    
+                    <form action="" method="POST" role="form">
+                    
+                        <div class="form-group">
+                            <label for="">Property Name</label>
+                            <input type="text" class="form-control" id="prop-name" placeholder="Input field">
+
+                            <label for="">Price</label>
+                            <input type="text" class="form-control" id="prop-price" placeholder="Input field">
+
+                            <label for="">Capacity</label>
+                            <input type="text" class="form-control" id="prop-capacity" placeholder="Input field">
+                        </div>
+                    
+                    </form>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
 </div>

@@ -10,9 +10,6 @@
     margin:0px;
     font-weight:bold;
     padding:8px;
-    /* border-right:solid;
-    border-right-width:1px;
-    border-right-color: #d4d4d4; */
     transition:color .5s ease;
 }
 #management-dashboard-side-panel p:hover{
@@ -21,4 +18,7 @@
 }
 .panel-body{
     padding-top:0px;
+}
+#add-prop-button{
+    float:right
 }
