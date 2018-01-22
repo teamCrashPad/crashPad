@@ -7,6 +7,10 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        description: {
+            type:  DataTypes.TEXT,
+            allowNull: true
+        },
         price: {
             type: DataTypes.STRING
         },
