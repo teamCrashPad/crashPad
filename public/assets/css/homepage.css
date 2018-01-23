@@ -1,5 +1,5 @@
 #hero_img {
-    background-image: url(/assets/Images/hero_bkg.jpg);
+    background-image: url(/assets/images/hero_bkg.jpg);
     background-repeat: no-repeat!important;
     height: 700px;
     width: 100%;
@@ -16,6 +16,20 @@
     border-right: 0px solid transparent;
     position: relative;
     top: -19px;
+}
+
+.right-triangle {
+    position: relative;
+    top: -19px;
+    float: right;
+}
+.welcome {
+    position: relative;
+    top:-5px;
+    float: right;
+    padding-right: 15px;
+    font-size: 20px;
+    letter-spacing: .75px;
 }
 
 .triangle-text {
@@ -167,7 +181,7 @@ listing
 }
 
 .image_group {
-    background-image: url(/assets/Images/image_group.jpg);
+    background-image: url(/assets/images/image_group.jpg);
     height: 300px;
     width: 100%;
     background-position: center;

@@ -1,21 +1,28 @@
 <div id="hero_img">
     <span class="left-triangle">
         <p class="triangle-text">
+            {{#if user}}
+            <a href="/api/logout">
+                Logout
+            </a>
+            <a class="welcome" style="color:white"> Welcome {{user.firstName}} {{user.lastName}}</a>
+            {{else}}
             <a href="/login">
                 Login
             </a>
+            {{/if}}
         </p>
     </span>
 </div>
-
+ 
 <div class="hero_content text-center">
     <img id="hero_img2" src="/assets/images/crashpad_logo.svg">
 
     <div class="hero-form form-group text-center">
-        <label class="sr-only" for="exampleInputAmount">Search for an apartment</label>
+        <label class="sr-only" for="exampleInputAmount">Look for apartments in a city</label>
         <form onsubmit="search()">
             <div class="input-group">
-                <input id="hero-input" type="text" class="form-control" id="exampleInputAmount" placeholder="Apartment Near BYU">
+                    <input name="city" id="hero-input" type="number" class="form-control" id="exampleInputAmount" placeholder="Search By City">
                 <div id="search" class="hero-input-search input-group-addon" onclick="search()">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </div>
@@ -28,6 +35,15 @@
             </span>
         </div>
     </div>
+    <span class="">
+        <p class="" style="font-size: 35px">
+            {{#if user.isLandlord}}
+            <a href="/landlord">
+                Manage Properties
+            </a>
+            {{/if}}
+        </p>
+    </span>
 </div>
 
 <div class="container">
