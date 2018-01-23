@@ -14,7 +14,7 @@
         </p>
     </span>
 </div>
- 
+
 <div class="hero_content text-center">
     <img id="hero_img2" src="/assets/images/crashpad_logo.svg">
 
@@ -22,7 +22,7 @@
         <label class="sr-only" for="exampleInputAmount">Look for apartments in a city</label>
         <form onsubmit="search()">
             <div class="input-group">
-                    <input name="city" id="hero-input" type="tel" class="form-control" id="exampleInputAmount" placeholder="Search By Zipcode">
+                <input name="city" id="hero-input" type="tel" class="form-control" id="exampleInputAmount" placeholder="Search By Zipcode">
                 <div id="search" class="hero-input-search input-group-addon" onclick="search()">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </div>
@@ -65,7 +65,7 @@
 
 <div class="homepage_listings">
     <h2 class="text-center">Recent Listings</h2>
-    <div class="container dflex">
+    <div id="homepage_listings" class="container dflex">
 
         <div class="col-md-4 recent_listings ">
             <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
@@ -138,4 +138,30 @@
 
         window.location.href = '/search/' + searchQuery
     }//search()
+
+
+    //$('#homepage_listings').append
+    function showListings() {
+
+        $.ajax({
+            url: '/api/properties',
+        }).success(function (data) {
+            console.log(data)
+            /*dt = data;
+            console.log(dt.length)
+            $(dt).each(function (i, val) {
+                console.log(val)
+                d = val
+
+                var addLine2;
+                if (d.addressLine2 == null) {
+                    addLine2 = '';
+                } else {
+                    addLine2 = d.addressLine2 + br
+                }
+                $('#homepage_listings').append('<a href="/api/property/' + d.Property.id + '" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.Property.name + '</h3><h3 class="rent">$' + d.Property.price + '</h3></div><p class="listing_address">' + d.addressLine1 + br + addLine2 + d.city + ', ' + d.state + ' ' + d.zip + '</p></a>');
+            })*/
+        })
+    } //showListings()
+    showListings()
 </script>
