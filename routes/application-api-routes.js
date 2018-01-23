@@ -24,21 +24,28 @@ module.exports = function (app) {
             //res.json(dbApplicationTemplate);
             res.render("applicationDetail", {
                 mycomments: dbApplicationTemplate[0].comments,
-                pets:  dbApplicationTemplate[0].havePets,
-                smokes:  dbApplicationTemplate[0].isSmoker
+                pets: dbApplicationTemplate[0].havePets,
+                smokes: dbApplicationTemplate[0].isSmoker
             });
         });
     });
 
-    app.post("/api/submitAppTemplate", function (req, res) {
-        //console.log(req.body);
+    app.put("/api/updateTemplate", function (req, res) {
+        console.log("... updating template ....")
+        console.log(req.body);
         var myId = req.user.id;
         var mydata = {
-            havePets: true,
-            isSmoker: false,
-            comments: null
+            havePets: req.body.havePets,
+            isSmoker: req.body.isSmoker,
+            comments: req.body.comments
         };
-        db.ApplicationTemplate.create(mydata, {include: [db.Tenant]}).then(function (dbApplicationTemplate) {
+        db.ApplicationTemplate.update(
+            mydata,
+            {
+                where: {
+                    tenantId: myId
+                }
+            }).then(function (dbApplicationTemplate) {
             res.json(dbApplicationTemplate);
         });
     });
@@ -48,10 +55,10 @@ module.exports = function (app) {
         var myId = req.user.id;
         var propId = localStorage.getItem("CPADpropId");
         var myApplication = {
-            tenantId: myId,
-            propertyId: propId
+            "TenantId": myId,
+            "PropertyId": propId
         };
-        db.Application.create(myApplication, {include: [db.Tenant, db.Property]}).then(function (dbApplication) {
+        db.Application.create(myApplication).then(function (dbApplication) {
             res.json(dbApplication);
         });
     });
