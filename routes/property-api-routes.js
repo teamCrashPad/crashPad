@@ -18,21 +18,21 @@ module.exports = function (app) {
         }).then(function (dbProperty) {
             //res.json(dbProperty);
             //console.log(dbProperty);
-            // //console.log("... req user: " + req.user.id);
-            // res.render("propertyDetail", {
-            //     propId: dbProperty.id,
-            //     name: dbProperty.name,
-            //     price: dbProperty.price,
-            //     capacity:  dbProperty.capacity,
-            //     description:  dbProperty.description,
-            //     address1:  dbProperty.Address.dataValues.addressLine1,
-            //     address2:  dbProperty.Address.dataValues.addressLine2,
-            //     city:  dbProperty.Address.dataValues.city,
-            //     state:  dbProperty.Address.dataValues.state,
-            //     zip:  dbProperty.Address.dataValues.zip,
-            //     landlordEmail:  dbProperty.Landlord.dataValues.email,
-            //     landlord:  dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName
-            // });
+            //console.log("... req user: " + req.user.id);
+            res.render("propertyDetail", {
+                propId: dbProperty.id,
+                name: dbProperty.name,
+                price: dbProperty.price,
+                capacity:  dbProperty.capacity,
+                description:  dbProperty.description,
+                address1:  dbProperty.Address.dataValues.addressLine1,
+                address2:  dbProperty.Address.dataValues.addressLine2,
+                city:  dbProperty.Address.dataValues.city,
+                state:  dbProperty.Address.dataValues.state,
+                zip:  dbProperty.Address.dataValues.zip,
+                landlordEmail:  dbProperty.Landlord.dataValues.email,
+                landlord:  dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName
+            });
         });
     });
 
@@ -55,11 +55,11 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/property_search/:city", function (req, res) {
+    app.get("/api/property_search/:query", function (req, res) {
         db.Address.findAll({
             include: [db.Property],
             where: {
-                city: req.params.city
+                zip: req.params.query
             }
 
         }).then(function (data) {
