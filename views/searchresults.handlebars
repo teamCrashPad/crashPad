@@ -84,8 +84,8 @@
         </div>
 */
 
-        var cityIs = $('#city').val
-        var urlIs = "/api/property/" + cityIs
+        var cityIs = $('#city').val();
+        var urlIs = '/api/property_search/' + cityIs;
         $.ajax({
             url: urlIs,
         }).success(function (data) {
@@ -96,7 +96,7 @@
                 console.log(val)
                 d = val
                 //<div class="col-sm-4 listing" onclick="displayProperty(' + d.id + ')">
-                /*$('#show_listings').append('<a href="/api/property/'+d.id+'" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.name + '</h3><h3 class="rent">' + d.price + '</h3></div><p class="listing_address">' + d.Address.addressLine1 + br + d.Address.addressLine2 + br + d.Address.city + ', ' + d.Address.state + d.Address.zip + '</p></a>');*/
+                $('#show_listings').append('<a href="/api/property/'+d.Property.id+'" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.Property.name + '</h3><h3 class="rent">' + d.Property.price + '</h3></div><p class="listing_address">' + d.addressLine1 + br + d.addressLine2 + br + d.city + ', ' + d.state  + ' ' +  d.zip + '</p></a>');
             })
         })
     } //showListings()

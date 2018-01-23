@@ -47,6 +47,11 @@ module.exports = function (app) {
         res.render("searchresults", {
             searchquery: query
         });
+
+
+
+        // res.send(query);
+
     });
 
 }

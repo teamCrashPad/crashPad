@@ -2,7 +2,9 @@ var db = require("../models");
 
 module.exports = function (app) {
     app.get("/api/properties", function (req, res) {
-        db.Property.findAll({include: [db.Landlord, db.Address, db.Application]}).then(function (dbProperty) {
+        db.Property.findAll({
+            include: [db.Landlord, db.Address, db.Application]
+        }).then(function (dbProperty) {
             res.json(dbProperty);
         });
     });
@@ -16,27 +18,29 @@ module.exports = function (app) {
         }).then(function (dbProperty) {
             //res.json(dbProperty);
             //console.log(dbProperty);
-            //console.log("... req user: " + req.user.id);
-            res.render("propertyDetail", {
-                propId: dbProperty.id,
-                name: dbProperty.name,
-                price: dbProperty.price,
-                capacity:  dbProperty.capacity,
-                description:  dbProperty.description,
-                address1:  dbProperty.Address.dataValues.addressLine1,
-                address2:  dbProperty.Address.dataValues.addressLine2,
-                city:  dbProperty.Address.dataValues.city,
-                state:  dbProperty.Address.dataValues.state,
-                zip:  dbProperty.Address.dataValues.zip,
-                landlordEmail:  dbProperty.Landlord.dataValues.email,
-                landlord:  dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName
-            });
+            // //console.log("... req user: " + req.user.id);
+            // res.render("propertyDetail", {
+            //     propId: dbProperty.id,
+            //     name: dbProperty.name,
+            //     price: dbProperty.price,
+            //     capacity:  dbProperty.capacity,
+            //     description:  dbProperty.description,
+            //     address1:  dbProperty.Address.dataValues.addressLine1,
+            //     address2:  dbProperty.Address.dataValues.addressLine2,
+            //     city:  dbProperty.Address.dataValues.city,
+            //     state:  dbProperty.Address.dataValues.state,
+            //     zip:  dbProperty.Address.dataValues.zip,
+            //     landlordEmail:  dbProperty.Landlord.dataValues.email,
+            //     landlord:  dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName
+            // });
         });
     });
 
     app.post("/api/properties", function (req, res) {
         //console.log(req.body);
-        db.Property.create(req.body,{include: [db.Address]}).then(function (dbProperty) {
+        db.Property.create(req.body, {
+            include: [db.Address]
+        }).then(function (dbProperty) {
             res.json(dbProperty);
         });
     });
@@ -51,11 +55,11 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/property/:city",function(req, res){
-        db.Property.findAll({
-            include: [db.Address],
+    app.get("/api/property_search/:city", function (req, res) {
+        db.Address.findAll({
+            include: [db.Property],
             where: {
-                city: query
+                city: req.params.city
             }
 
         }).then(function (data) {
@@ -63,6 +67,5 @@ module.exports = function (app) {
             res.json(data);
         });
 
-    })
-
+    });
 };
