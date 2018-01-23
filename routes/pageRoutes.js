@@ -21,15 +21,18 @@ module.exports = function (app) {
                 LandlordId: req.user.id
             }
 
-        }).then(function(data){
+        }).then(function (data) {
             var isProperties = data.length;
             var properties = data;
 
             res.render("landlord", {
                 name: req.user.firstName,
                 properties: properties,
-                isProperties: isProperties
-                });
+                isProperties: isProperties,
+                user: req.user,
+                userProfile: JSON.stringify(req.user, null, '  ')
+
+            });
             // res.json(properties);
         });
 
@@ -41,10 +44,13 @@ module.exports = function (app) {
         var query = req.params.search_query
 
         res.render("searchresults", {
-            searchquery: query
+            searchquery: query,
+            user: req.user,
+            userProfile: JSON.stringify(req.user, null, '  ')
+
         });
 
-        
+
 
 
         // res.send(query);

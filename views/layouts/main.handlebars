@@ -24,7 +24,7 @@
         }
 
         .navbar {
-            margin-bottom: 0px !important;
+            margin-bottom: 20px !important;
             background: #fff;
         }
 
@@ -69,7 +69,10 @@
                         <a href="/api/logout">
                             Logout
                         </a>
-                        {{else}}
+                    </li>
+                    {{else}}
+                    <li class="nav navbar-nav">
+
                         <a href="/login">
                             Login
                         </a>
@@ -97,7 +100,7 @@
             var searchQuery = document.querySelector('#nav_search').value;
             console.log(searchQuery)
 
-            window.location.href = '../search/' + searchQuery;
+            window.location.href = '/search/' + searchQuery;
         }//search()
     </script>
 </body>

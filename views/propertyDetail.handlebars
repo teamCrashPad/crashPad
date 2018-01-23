@@ -1,41 +1,116 @@
-<link rel="stylesheet" href="/assets/css/homepage.css">
+{{!--
+<link rel="stylesheet" href="/assets/css/homepage.css"> --}}
 <script src="/assets/js/prop.js"></script>
 
-<div class="row">
-    <div class="col-md-4 recent_listings center_listing">
-        <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
-        <div id="{{propId}}" class="listing_head_info">
-            <h3 id="{{propId}}" class="listing_title">{{name}}</h3>
-            <h3 class="rent">${{price}}</h3>
+<style>
+    .listing_img {
+        width: 100%;
+    }
+
+    .listing_head_info {
+        display: inline-flex;
+        width: 100%;
+    }
+
+    .listing_title {
+        text-transform: uppercase;
+        font-size: 22px;
+        font-weight: 900;
+        width: 65%;
+    }
+
+    .rent {
+        color: #00B55F;
+        text-align: right;
+        width: 35%;
+    }
+
+    .listing_address {
+        color: #8a8a8a;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .googlemap {
+        width: 100%;
+        height: 230px;
+    }
+
+    .landlord-info-header {
+        margin-bottom: 3px;
+        margin-top: 0;
+        color: #bbb9b9;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: .75px;
+    }
+
+    .landlord-name {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    #applyFor {
+        margin-top: 15px;
+        margin-right: 35px!important;
+    }
+</style>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-7 recent_listings center_listing">
+            <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
+            <div id="{{propId}}" class="listing_head_info">
+                <h3 id="{{propId}}" class="listing_title">{{name}}</h3>
+                <h3 class="rent">${{price}}</h3>
+            </div>
+            <p class="listing_address">
+                {{address1}}, {{address2}}
+                <br> {{city}}, {{state}} {{zip}}
+            </p>
+            <hr>
+            <p class="homepage_content">
+                {{description}}
+            </p>
+
         </div>
-        <p class="listing_address">
-            {{address1}}, {{address2}}
-            <br> {{city}}, {{state}} {{zip}}
-        </p>
-    </div>
-    <div class="col-md-8 recent_listings center_listing">
-        <div>Landlord Info</div>
-        <div class="listing_head_info">
-            <h3 class="listing_title">{{landlord}}</h3>
+        <div class="col-md-5 recent_listings center_listing">
+
+            <div class='row'>
+                <div class="col-md-7">
+                    <h5 class="landlord-info-header">Landlord Info</h5>
+                    <h3 class="landlord-name">{{landlord}}</h3>
+                    <p class="">{{landlordEmail}}</p>
+                    <p class="">{{landlordPhone}}</p>
+
+                </div>
+                <div class="col-md-5">
+                    <button id="applyFor" data-id="{{propId}}" type="button" class="btn btn-warning">Apply to This Property</button>
+                </div>
+            </div>
+
+            <iframe id="gMap_iframe" class="googlemap" src="" allowfullscreen>
+            </iframe>
         </div>
-        <p class="rent">{{landlordEmail}}</p>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-2" >
-    </div>
-    <div class="col-md-8 homepage_content">
-        {{description}}
-    </div>
-    <div class="col-md-2" >
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4" >
-    </div>
-    <div class="col-md-4" >
-        <button id="applyFor" data-id="{{propId}}" type="button" class="btn btn-warning">Apply to This Property</button>
-    </div>
-    <div class="col-md-4" >
-    </div>
-</div>
+<script>
+    var addressIs = '{{address1}} {{city}} {{state}} {{zip}}'
+    addressIs = addressIs.replace(/\s+/g, '+');
+    $('#gMap_iframe').attr('src', 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDz9vAyuY21L37v5BVo_ZSE33_D9XrEwPI&q=' + addressIs + '&zoom=15')
+</script>
