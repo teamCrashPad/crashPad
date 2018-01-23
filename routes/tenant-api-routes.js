@@ -9,7 +9,7 @@ module.exports = function (app) {
 
     app.get("/api/tenant/:id", function (req, res) {
         db.Tenant.findOne({
-            include: [db.Application],
+            include: [db.ApplicationTemplate, db.Application],
             where: {
                 id: req.params.id
             }

@@ -4,15 +4,22 @@ module.exports = function (app) {
     app.get("/api/application", function (req, res) {
     });
 
-    app.get("/api/fillapp/:tenantId", function (req, res) {
-        db.ApplicationTemplate.findOne({
+    app.get("/api/fillApplication/:propId", function (req, res) {
+        //var myId = req.user.id;
+        console.log("filling app....");
+        var myId = 1;
+        db.ApplicationTemplate.findOrCreate({
             include: [db.Tenant],
             where: {
-                TenantId: req.params.id
+                tenantId: myId
             }
         }).then(function (dbTemplate) {
-            res.render("appicationDetail", {
-                appId: dbApplication.id
+            console.log("...dbTemplate: ");
+            console.log(dbTemplate);
+            res.render("applicationDetail", {
+                comments: dbTemplate.comments,
+                pets:  dbTemplate.havePets,
+                smokes:  dbTemplate.isSmoker
             });
         });
     });

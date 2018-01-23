@@ -1,6 +1,5 @@
 {{!--
 <link rel="stylesheet" href="/assets/css/homepage.css"> --}}
-<script src="/assets/js/prop.js"></script>
 
 <style>
     .listing_img {
@@ -86,7 +85,7 @@
 
                 </div>
                 <div class="col-md-5">
-                    <button id="applyFor" data-id="{{propId}}" type="button" class="btn btn-warning">Apply to This Property</button>
+                    <a href="/api/fillApplication/{{propId}}" class="col-sm-4 listing">Apply to This Property</a>
                 </div>
             </div>
 
