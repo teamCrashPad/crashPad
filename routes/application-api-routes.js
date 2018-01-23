@@ -11,9 +11,8 @@ module.exports = function (app) {
     app.get("/api/fillApplication/:propId", function (req, res) {
         var propId = req.params.propId;
         localStorage.setItem("CPADpropId", propId);
-        //var myId = req.user.id;
+        var myId = req.user.id;
         console.log("filling app....");
-        var myId = 1;
         db.ApplicationTemplate.findOrCreate({
             include: [db.Tenant],
             where: {
@@ -31,15 +30,28 @@ module.exports = function (app) {
         });
     });
 
+    app.post("/api/submitAppTemplate", function (req, res) {
+        //console.log(req.body);
+        var myId = req.user.id;
+        var mydata = {
+            havePets: true,
+            isSmoker: false,
+            comments: null
+        };
+        db.ApplicationTemplate.create(mydata, {include: [db.Tenant]}).then(function (dbApplicationTemplate) {
+            res.json(dbApplicationTemplate);
+        });
+    });
+
     app.post("/api/submitApplication", function (req, res) {
         //console.log(req.body);
+        var myId = req.user.id;
+        var propId = localStorage.getItem("CPADpropId");
+        var myApplication = {
+            tenantId: myId,
+            propertyId: propId
+        };
         db.Application.create(myApplication, {include: [db.Tenant, db.Property]}).then(function (dbApplication) {
-            var myId = req.user.id;
-            var propId = localStorage.getItem("CPADpropId");
-            var myApplication = {
-                tenantId: myId,
-                propertyId: propId
-            };
             res.json(dbApplication);
         });
     });
