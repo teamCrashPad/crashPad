@@ -19,26 +19,27 @@ module.exports = function (app) {
             where: {
                 tenantId: myId
             }
-        }).then(function (dbTemplate) {
-            console.log("...dbTemplate: ");
-            console.log(dbTemplate);
+        }).then(function (dbApplicationTemplate) {
+            //console.log("...dbApplicationTemplate: ");
+            //console.log(dbApplicationTemplate);
+            //res.json(dbApplicationTemplate);
             res.render("applicationDetail", {
-                mycomments: dbTemplate.comments,
-                pets:  dbTemplate.havePets,
-                smokes:  dbTemplate.isSmoker
+                mycomments: dbApplicationTemplate[0].comments,
+                pets:  dbApplicationTemplate[0].havePets,
+                smokes:  dbApplicationTemplate[0].isSmoker
             });
         });
     });
 
     app.post("/api/submitApplication", function (req, res) {
-        var myId = req.user.id;
-        var propId = localStorage.getItem("CPADpropId");
-        var myApplication = {
-            tenantId: myId,
-            propertyId: propId
-        };
         //console.log(req.body);
         db.Application.create(myApplication, {include: [db.Tenant, db.Property]}).then(function (dbApplication) {
+            var myId = req.user.id;
+            var propId = localStorage.getItem("CPADpropId");
+            var myApplication = {
+                tenantId: myId,
+                propertyId: propId
+            };
             res.json(dbApplication);
         });
     });
