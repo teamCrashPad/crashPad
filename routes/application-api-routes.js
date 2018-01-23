@@ -6,11 +6,11 @@ module.exports = function (app) {
 
     app.get("/api/fillapp/:tenantId", function (req, res) {
         db.ApplicationTemplate.findOne({
-            include: [db.Tenant, db.Property],
+            include: [db.Tenant],
             where: {
-                id: req.params.id
+                TenantId: req.params.id
             }
-        }).then(function (dbApplication) {
+        }).then(function (dbTemplate) {
             res.render("appicationDetail", {
                 appId: dbApplication.id
             });
