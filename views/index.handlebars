@@ -1,9 +1,15 @@
 <div id="hero_img">
     <span class="left-triangle">
         <p class="triangle-text">
+        {{#if user}}
+            <a href="/api/logout">
+                Logout
+            </a>
+        {{else}}
             <a href="/login">
                 Login
             </a>
+        {{/if}}
         </p>
     </span>
 </div>
