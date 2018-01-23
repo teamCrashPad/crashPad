@@ -10,10 +10,11 @@
         width: 32%;
         margin: 0.6%;
     }
-    @media screen and (max-width: 767px){
-        .listing{
-            width:auto;
-            margin:auto;
+
+    @media screen and (max-width: 767px) {
+        .listing {
+            width: auto;
+            margin: auto;
         }
     }
 
@@ -35,14 +36,14 @@
     }
 
     .listing_title {
-        width: 75%;
+        width: 65%;
         text-align: left;
         text-transform: uppercase;
     }
 
     .rent {
         text-align: right;
-        width: 25%;
+        width: 35%;
         color: #00B55F;
 
     }
@@ -57,96 +58,51 @@
 <h2 class="text-center">Showing Results for: {{searchquery}}</h2>
 
 <div class="container">
-    <div class="row">
-
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-sm-4 listing">
-            <img src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
+    <div id="show_listings" class="row">
 
     </div>
 </div>
+
+<script>
+    var d,
+        br = '<br>';
+
+    function showListings() {
+        //url = /api/properties
+        //#show_listings
+        /**
+            <div class="col-sm-4 listing" onclick=">
+            <img src="/assets/images/building_template.jpg" alt="">
+            <div class="listing_head_info">
+                <h3 class="listing_title">Listing Title</h3>
+                <h3 class="rent">$960</h3>
+            </div>
+            <p class="listing_address">
+                2036 E Autumn St,
+                <br> Eagle Mountain, Ut 84005
+            </p>
+        </div>
+
+*/
+        $.ajax({
+            url: "/api/properties",
+        }).success(function (data) {
+            console.log(data)
+            dt = data;
+
+            $(dt).each(function (i, val) {
+                console.log(val)
+                d = val
+                //<div class="col-sm-4 listing" onclick="displayProperty(' + d.id + ')">
+                $('#show_listings').append('<a href="/api/property/'+d.id+'" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.name + '</h3><h3 class="rent">' + d.price + '</h3></div><p class="listing_address">' + d.Address.addressLine1 + br + d.Address.addressLine2 + br + d.Address.city + ', ' + d.Address.state + d.Address.zip + '</p></a>');
+            })
+        })
+    } //showListings()
+    showListings();
+
+    function displayProperty(propId) {
+        console.log(propId)
+        window.location.href = '../api/property/' + propId;
+
+    }
+</script>
