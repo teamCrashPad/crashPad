@@ -31,7 +31,6 @@ module.exports = function (app) {
                 isProperties: isProperties
                 });
             // res.json(properties);
-            });
         });
 
 
@@ -42,12 +41,10 @@ module.exports = function (app) {
         var query = req.params.search_query
 
         res.render("searchresults", {
-            searchquery: query,
-            user: req.user,
-            userProfile: JSON.stringify(req.user, null, '  ')
-
+            searchquery: query
         });
 
+        
 
 
         // res.send(query);
