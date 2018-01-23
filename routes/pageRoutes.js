@@ -17,37 +17,36 @@ module.exports = function (app) {
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
         var properties;
         var isProperties
-        
+
         db.Property.findAll({
             include: [db.Landlord],
             where: {
                 LandlordId: req.user.id
             }
 
-        }).then(function(data){
+        }).then(function (data) {
             isProperties = data.length;
             properties = data;
             console.log(properties);
             console.log(isProperties);
 
-            res.render("landlord", {name: req.user.firstName,
+            res.render("landlord", {
+                name: req.user.firstName,
                 properties: properties,
                 isProperties: isProperties
-                });
+            });
         });
 
 
-        
+
     })
 
     app.get("/search/:search_query", function (req, res) {
-       var query = req.params.search_query
+        var query = req.params.search_query
 
         res.render("searchresults", {
             searchquery: query
         });
-        // res.send(query);
-
     });
 
 }

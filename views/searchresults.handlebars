@@ -54,7 +54,7 @@
         text-transform: uppercase;
     }
 </style>
-
+<input type="hidden" id="city" value="{{searchquery}}">
 <h2 class="text-center">Showing Results for: {{searchquery}}</h2>
 
 <div class="container">
@@ -82,10 +82,12 @@
                 <br> Eagle Mountain, Ut 84005
             </p>
         </div>
-
 */
+
+        var cityIs = $('#city').val
+        var urlIs = "/api/property/" + cityIs
         $.ajax({
-            url: "/api/properties",
+            url: urlIs,
         }).success(function (data) {
             console.log(data)
             dt = data;
@@ -94,7 +96,7 @@
                 console.log(val)
                 d = val
                 //<div class="col-sm-4 listing" onclick="displayProperty(' + d.id + ')">
-                $('#show_listings').append('<a href="/api/property/'+d.id+'" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.name + '</h3><h3 class="rent">' + d.price + '</h3></div><p class="listing_address">' + d.Address.addressLine1 + br + d.Address.addressLine2 + br + d.Address.city + ', ' + d.Address.state + d.Address.zip + '</p></a>');
+                /*$('#show_listings').append('<a href="/api/property/'+d.id+'" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.name + '</h3><h3 class="rent">' + d.price + '</h3></div><p class="listing_address">' + d.Address.addressLine1 + br + d.Address.addressLine2 + br + d.Address.city + ', ' + d.Address.state + d.Address.zip + '</p></a>');*/
             })
         })
     } //showListings()

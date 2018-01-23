@@ -49,4 +49,18 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/api/property/:city",function(req, res){
+        db.Property.findAll({
+            include: [db.Address],
+            where: {
+                city: query
+            }
+
+        }).then(function (data) {
+            console.log(data)
+            res.json(data);
+        });
+
+    })
+
 };
