@@ -15,7 +15,11 @@ module.exports = function (app) {
 
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+        
+>>>>>>> f7ce9f6e125fd68224a92d097ecf6663edded819
         var properties;
         var isProperties
 >>>>>>> 968d7259db7e02e8b8b8921fd3d343dc0167f539
@@ -41,11 +45,18 @@ module.exports = function (app) {
             res.render("landlord", {
                 name: req.user.firstName,
                 properties: properties,
+<<<<<<< HEAD
                 isProperties: isProperties
 <<<<<<< HEAD
                 });
             // res.json(properties);
 =======
+=======
+                isProperties: isProperties,
+                user: req.user,
+                userProfile: JSON.stringify(req.user, null, '  ')
+    
+>>>>>>> f7ce9f6e125fd68224a92d097ecf6663edded819
             });
 >>>>>>> 968d7259db7e02e8b8b8921fd3d343dc0167f539
         });
@@ -58,7 +69,10 @@ module.exports = function (app) {
         var query = req.params.search_query
 
         res.render("searchresults", {
-            searchquery: query
+            searchquery: query,
+            user: req.user,
+            userProfile: JSON.stringify(req.user, null, '  ')
+
         });
 
 

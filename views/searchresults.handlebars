@@ -81,8 +81,14 @@
             $(dt).each(function (i, val) {
                 console.log(val)
                 d = val
-                //<div class="col-sm-4 listing" onclick="displayProperty(' + d.id + ')">
-                $('#show_listings').append('<a href="/api/property/' + d.Property.id + '" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.Property.name + '</h3><h3 class="rent">' + d.Property.price + '</h3></div><p class="listing_address">' + d.addressLine1 + br + d.addressLine2 + br + d.city + ', ' + d.state + ' ' + d.zip + '</p></a>');
+
+                var addLine2;
+                if (d.addressLine2 == null) {
+                    addLine2 = '';
+                } else {
+                    addLine2 = d.addressLine2 + br
+                }
+                $('#show_listings').append('<a href="/api/property/' + d.Property.id + '" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.Property.name + '</h3><h3 class="rent">$' + d.Property.price + '</h3></div><p class="listing_address">' + d.addressLine1 + br + addLine2 + d.city + ', ' + d.state + ' ' + d.zip + '</p></a>');
             })
         })
     } //showListings()
