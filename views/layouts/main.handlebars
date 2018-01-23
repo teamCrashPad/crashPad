@@ -19,13 +19,13 @@
             width: 210px;
         }
 
-        .nav{
+        .nav {
             text-transform: uppercase;
         }
 
         .navbar {
             margin-bottom: 0px !important;
-            background:#fff;
+            background: #fff;
         }
 
         .navbar-brand {
@@ -57,9 +57,25 @@
                     <li class="">
                         <a href="/">Home</a>
                     </li>
-                    {{!-- <li>
-                        <a href="#">Account</a>
-                    </li> --}}
+                    {{#if user.isLandlord}}
+                    <li class="nav navbar-nav">
+                        <a href="/landlord">
+                            My Properties
+                        </a>
+                    </li>
+                    {{/if}} {{#if user}}
+                    <li class="nav navbar-nav">
+
+                        <a href="/api/logout">
+                            Logout
+                        </a>
+                        {{else}}
+                        <a href="/login">
+                            Login
+                        </a>
+                    </li>
+                    {{/if}}
+
                 </ul>
                 <form class="navbar-form navbar-right pull-right" onsubmit="search()">
                     <div class="form-group">
@@ -73,17 +89,17 @@
         <!-- /.container-fluid -->
     </nav>
     {{{body}}}
- 
-<script>
-    //route = /search/
-    function search(){
-        event.preventDefault();
-        var searchQuery = document.querySelector('#nav_search').value;
-        console.log(searchQuery)
 
-        window.location.href = '../search/'+searchQuery;
-    }//search()
-</script>
+    <script>
+        //route = /search/
+        function search() {
+            event.preventDefault();
+            var searchQuery = document.querySelector('#nav_search').value;
+            console.log(searchQuery)
+
+            window.location.href = '../search/' + searchQuery;
+        }//search()
+    </script>
 </body>
 
 </html>
