@@ -9,31 +9,27 @@ module.exports = function (app) {
             layout: 'homepage',
             user: req.user,
             userProfile: JSON.stringify(req.user, null, '  ')
-
         });
 
     })
 
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
-        var properties;
-        var isProperties
-        
+
         db.Property.findAll({
-            include: [db.Landlord],
+            include: [db.Landlord, db.Address],
             where: {
                 LandlordId: req.user.id
             }
 
         }).then(function(data){
-            isProperties = data.length;
-            properties = data;
-            console.log(properties);
-            console.log(isProperties);
+            var isProperties = data.length;
+            var properties = data;
 
             res.render("landlord", {name: req.user.firstName,
                 properties: properties,
                 isProperties: isProperties
                 });
+            // res.json(properties);
         });
 
 

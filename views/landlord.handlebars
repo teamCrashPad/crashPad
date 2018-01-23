@@ -35,13 +35,36 @@
                            </div>
                            <div class="dash-body-div" id="manage-props-div">
                                {{#if isProperties}}
-                                    <h2>You have properties</h2>
+                                        <br />
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Property</th>
+                                                        <th>Address</th>
+                                                        <th>State</th>
+                                                        <th>City</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each properties}}
+                                                    <tr class="property-row" data-id="{{id}}" data-name="{{name}}" data-description="{{description}}" data-price="{{price}}" data-capacity="{{capacity}}" data-address="{{Address.addressLine1}}" data-city="{{Address.city}}" data-state="{{Address.state}}" data-zip="{{Address.zip}}">
+                                                        <td data-toggle="modal" href='#modal-prop-details'>{{name}}</td>
+                                                        <td data-toggle="modal" href='#modal-prop-details'>{{Address.addressLine1}}</td>
+                                                        <td data-toggle="modal" href='#modal-prop-details'>{{Address.state}}</td>
+                                                        <td data-toggle="modal" href='#modal-prop-details'>{{Address.city}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
                                 {{else}}
                                 <div class="alert alert-info animated fadeInDown" role="alert">
                                     <p><span class="glyphicon glyphicon-exclamation-sign"></span> It looks like you don't have any properties to manage. Click the green button below to add your first property.</p>
                                 </div>
                                {{/if}}
-                               <button id="add-prop-button" type="button" class="btn btn-success" data-toggle="modal" href='#modal-id'><span class="glyphicon glyphicon-plus"></span> Add Property</button>
+                               <button id="add-prop-button" type="button" class="btn btn-success" data-toggle="modal" href='#add-property-modal'><span class="glyphicon glyphicon-plus"></span> Add Property</button>
                                
                            </div>
                            <div class="dash-body-div" id="manage-apps-div">
@@ -57,14 +80,14 @@
     </div>
 
     
-    <div class="modal fade" id="modal-id">
+    <div class="modal fade" id="add-property-modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Add Property</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="add-prop-modal-body">
                     
                     <form action="" method="POST" role="form">
                     
@@ -153,9 +176,28 @@
                     </form>
                     
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" id="add-prop-modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="submit-prop-button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="modal fade" id="modal-prop-details">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="prop-detail-title"></h4>
+                </div>
+                <div class="modal-body" id="modal-prop-details-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="view-details-page-button">View Details Page</button>
                 </div>
             </div>
         </div>
