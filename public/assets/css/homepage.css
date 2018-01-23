@@ -18,6 +18,20 @@
     top: -19px;
 }
 
+.right-triangle {
+    position: relative;
+    top: -19px;
+    float: right;
+}
+.welcome {
+    position: relative;
+    top:-5px;
+    float: right;
+    padding-right: 15px;
+    font-size: 25px;
+    letter-spacing: .75px;
+}
+
 .triangle-text {
     padding-left: 15px;
     padding-top: 15px;

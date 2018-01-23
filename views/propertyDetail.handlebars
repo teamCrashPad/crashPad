@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-md-4 recent_listings center_listing">
         <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
-        <div class="listing_head_info">
-            <h3 class="listing_title">{{name}}</h3>
+        <div id="{{propId}}" class="listing_head_info">
+            <h3 id="{{propId}}" class="listing_title">{{name}}</h3>
             <h3 class="rent">${{price}}</h3>
         </div>
         <p class="listing_address">
@@ -22,10 +22,19 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-2" >
+    </div>
+    <div class="col-md-8 homepage_content">
+        {{description}}
+    </div>
+    <div class="col-md-2" >
+    </div>
+</div>
+<div class="row">
     <div class="col-md-4" >
     </div>
     <div class="col-md-4" >
-        <button id="applyFor" type="button" class="btn btn-warning">Apply to This Property</button>
+        <button id="applyFor" data-id="{{propId}}" type="button" class="btn btn-warning">Apply to This Property</button>
     </div>
     <div class="col-md-4" >
     </div>

@@ -5,6 +5,7 @@
             <a href="/api/logout">
                 Logout
             </a>
+            <a class="welcome" style="color:white"> Welcome {{user.firstName}} {{user.lastName}}</a>
         {{else}}
             <a href="/login">
                 Login
@@ -34,6 +35,15 @@
             </span>
         </div>
     </div>
+    <span class="">
+        <p class="" style="font-size: 35px">
+        {{#if user.isLandlord}}
+            <a href="/landlord">
+                Manage Properties
+            </a>
+        {{/if}}
+        </p>
+    </span>
 </div>
 
 <div class="container">

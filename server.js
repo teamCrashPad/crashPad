@@ -45,8 +45,6 @@ app.set("view engine", "handlebars");
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 // Routes
 // =============================================================
 //require("./routes/html-routes.js")(app);
@@ -55,6 +53,7 @@ require('./routes/tenant-api-routes')(app);
 require('./routes/landlord-api-routes')(app);
 require('./routes/property-api-routes')(app);
 require('./routes/pageRoutes')(app);
+require('./routes/application-api-routes')(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({}).then(function() {
