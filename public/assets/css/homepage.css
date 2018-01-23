@@ -1,5 +1,5 @@
 #hero_img {
-    background-image: url(/assets/Images/hero_bkg.jpg);
+    background-image: url(/assets/images/hero_bkg.jpg);
     background-repeat: no-repeat!important;
     height: 700px;
     width: 100%;
@@ -181,7 +181,7 @@ listing
 }
 
 .image_group {
-    background-image: url(/assets/Images/image_group.jpg);
+    background-image: url(/assets/images/image_group.jpg);
     height: 300px;
     width: 100%;
     background-position: center;

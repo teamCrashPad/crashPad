@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
         Address.belongsTo(models.Property,{
             onDelete: "cascade"
         });
-    };
+    }; 
 
     return Address;
 };
