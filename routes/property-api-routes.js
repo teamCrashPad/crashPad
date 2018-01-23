@@ -18,9 +18,11 @@ module.exports = function (app) {
             //console.log(dbProperty);
             //console.log("... req user: " + req.user.id);
             res.render("propertyDetail", {
+                propId: dbProperty.id,
                 name: dbProperty.name,
                 price: dbProperty.price,
                 capacity:  dbProperty.capacity,
+                description:  dbProperty.description,
                 address1:  dbProperty.Address.dataValues.addressLine1,
                 address2:  dbProperty.Address.dataValues.addressLine2,
                 city:  dbProperty.Address.dataValues.city,
