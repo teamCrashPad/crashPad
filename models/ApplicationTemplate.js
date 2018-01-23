@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     ApplicationTemplate.associate = function (models) {
-        ApplicationTemplate.hasMany(models.Application, {onDelete: "cascade"});
+        ApplicationTemplate.belongsTo(models.Tenant, {onDelete: "cascade"});
     };
 
     return ApplicationTemplate;

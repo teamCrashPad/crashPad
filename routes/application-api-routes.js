@@ -4,9 +4,9 @@ module.exports = function (app) {
     app.get("/api/application", function (req, res) {
     });
 
-    app.get("/api/application/:id", function (req, res) {
-        db.Application.findOne({
-            include: [db.ApplicationTemplate, db.Property],
+    app.get("/api/fillapp/:tenantId", function (req, res) {
+        db.ApplicationTemplate.findOne({
+            include: [db.Tenant, db.Property],
             where: {
                 id: req.params.id
             }

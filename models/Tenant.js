@@ -31,7 +31,9 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Tenant.associate = function (models) {
-       
+        Tenant.hasOne(models.ApplicationTemplate, {
+            onDelete: "cascade"
+        });
         Tenant.hasMany(models.Application, {
             onDelete: "cascade"
         });

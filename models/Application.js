@@ -17,11 +17,6 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         });
-        Application.belongsTo(models.ApplicationTemplate, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
     };
 
     return Application;
