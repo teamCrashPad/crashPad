@@ -36,12 +36,11 @@ module.exports = function (app) {
             // res.json(properties);
         });
 
-
-
     })
 
-    app.get("/search/:search_query", function (req, res) {
+    app.get("/search/:search_query?", function (req, res) {
         var query = req.params.search_query
+        
 
         res.render("searchresults", {
             searchquery: query,
@@ -49,9 +48,6 @@ module.exports = function (app) {
             userProfile: JSON.stringify(req.user, null, '  ')
 
         });
-
-
-
 
         // res.send(query);
 

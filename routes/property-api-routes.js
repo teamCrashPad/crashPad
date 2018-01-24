@@ -58,7 +58,10 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/property_search/:query", function (req, res) {
+    app.get("/api/property_search/:query?", function (req, res) {
+        if(req.params.query != null){
+
+        
         db.Address.findAll({
             include: [db.Property],
             where: {
@@ -69,6 +72,17 @@ module.exports = function (app) {
             //console.log(data);
             res.json(data);
         });
+
+    }else{
+
+        db.Address.findAll({
+            include: [db.Property]
+
+        }).then(function (data) {
+            //console.log(data);
+            res.json(data);
+        });
+    }
 
     });
     app.get("/api/application_property/:query", function (req, res) {

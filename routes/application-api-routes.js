@@ -1,4 +1,5 @@
 var db = require("../models");
+var requireLogin = require('../middlewares/requireLogin');
 if (typeof localStorage === "undefined" || localStorage === null) {
     var LocalStorage = require('node-localstorage').LocalStorage;
     localStorage = new LocalStorage('./scratch');
@@ -8,7 +9,7 @@ module.exports = function (app) {
     app.get("/api/application", function (req, res) {
     });
 
-    app.get("/api/fillApplication/:propId", function (req, res) {
+    app.get("/api/fillApplication/:propId", requireLogin, function (req, res) {
         var propId = req.params.propId;
         localStorage.setItem("CPADpropId", propId);
         var myId = req.user.id;
