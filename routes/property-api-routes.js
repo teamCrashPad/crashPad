@@ -30,6 +30,7 @@ module.exports = function (app) {
                 city: dbProperty.Address.dataValues.city,
                 state: dbProperty.Address.dataValues.state,
                 zip: dbProperty.Address.dataValues.zip,
+                notApplied: true,
                 landlordEmail: dbProperty.Landlord.dataValues.email,
                 landlord: dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName,
                 user: req.user,

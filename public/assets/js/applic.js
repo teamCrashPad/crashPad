@@ -37,7 +37,9 @@ $(document).ready(function () {
             url: "/api/submitApplication"
         })
             .done(function () {
-                window.location.href = "/";
+                $("#success").html("<h3>SUCCESS! Your application has been submitted.  The landlord will contact you when you are accepted.</h3>");
+                $("#templateDiv").remove();
+                //window.location.href = "/";
             });
     }
 

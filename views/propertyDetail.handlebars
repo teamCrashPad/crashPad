@@ -56,8 +56,14 @@
     }
 </style>
 <div class="container">
-
     <div class="row">
+        <div id="alreadyApplied" class="col-md-12">
+            <h2>{{alreadyAppliedMsg}}</h2>
+        </div>
+    </div>
+
+    {{#if notApplied}}
+    <div class="row" id="propDetails">
         <div class="col-md-7 recent_listings center_listing">
             <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
             <div id="{{propId}}" class="listing_head_info">
@@ -93,6 +99,7 @@
             </iframe>
         </div>
     </div>
+    {{/if}}
 </div>
 <script>
     var addressIs = '{{address1}} {{city}} {{state}} {{zip}}'

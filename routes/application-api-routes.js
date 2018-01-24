@@ -6,32 +6,67 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 }
 
 module.exports = function (app) {
-    app.get("/api/application", function (req, res) {
+    app.get("/api/findApplicant/:propId", function (req, res) {
     });
 
     app.get("/api/fillApplication/:propId", requireLogin, function (req, res) {
         var propId = req.params.propId;
         localStorage.setItem("CPADpropId", propId);
         var myId = req.user.id;
-        //console.log("filling app....myID: " + myId);
-        db.ApplicationTemplate.findOrCreate({
+
+        db.Application.find({
             where: {
-                "TenantId": myId
+                "TenantId": myId,
+                "PropertyId": propId
             }
-        }).then(function (dbApplicationTemplate) {
-            //console.log("...dbApplicationTemplate: ");
-            //console.log(dbApplicationTemplate);
-            //res.json(dbApplicationTemplate);
-            res.render("applicationDetail", {
-                mycomments: dbApplicationTemplate[0].comments,
-                pets: dbApplicationTemplate[0].havePets,
-                smokes: dbApplicationTemplate[0].isSmoker,
-                propIdNum: propId,
-                user: req.user,
-                userProfile: JSON.stringify(req.user, null, '  ')
-    
+        }).then(function(dbApplication) {
+            if (dbApplication == null) {
+                console.log("NOT already applied....");
+                db.ApplicationTemplate.findOrCreate({
+                    where: {
+                        "TenantId": myId
+                    }
+                }).then(function (dbApplicationTemplate) {
+                    //console.log("...dbApplicationTemplate: ");
+                    //console.log(dbApplicationTemplate);
+                    //res.json(dbApplicationTemplate);
+                    res.render("applicationDetail", {
+                        mycomments: dbApplicationTemplate[0].comments,
+                        pets: dbApplicationTemplate[0].havePets,
+                        smokes: dbApplicationTemplate[0].isSmoker,
+                        propIdNum: propId,
+                        user: req.user,
+                        userProfile: JSON.stringify(req.user, null, '  ')
+
+                    });
+                });
+            } else {
+                res.render("propertyDetail", {
+                    alreadyAppliedMsg: "You have already Applied to this Property",
+                    notApplied: false
+                });
+            }
+        }, function (error) {
+            db.ApplicationTemplate.findOrCreate({
+                where: {
+                    "TenantId": myId
+                }
+            }).then(function (dbApplicationTemplate) {
+                //console.log("...dbApplicationTemplate: ");
+                //console.log(dbApplicationTemplate);
+                //res.json(dbApplicationTemplate);
+                res.render("applicationDetail", {
+                    mycomments: dbApplicationTemplate[0].comments,
+                    pets: dbApplicationTemplate[0].havePets,
+                    smokes: dbApplicationTemplate[0].isSmoker,
+                    propIdNum: propId,
+                    user: req.user,
+                    userProfile: JSON.stringify(req.user, null, '  ')
+
+                });
             });
         });
+        //console.log("filling app....myID: " + myId);
     });
 
     app.put("/api/updateTemplate", function (req, res) {
