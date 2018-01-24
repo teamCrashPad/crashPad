@@ -67,39 +67,7 @@
     <h2 class="text-center">Recent Listings</h2>
     <div id="homepage_listings" class="container dflex">
 
-        <div class="col-md-4 recent_listings ">
-            <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-md-4 recent_listings center_listing">
-            <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
-        <div class="col-md-4 recent_listings ">
-            <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
-            <div class="listing_head_info">
-                <h3 class="listing_title">Listing Title</h3>
-                <h3 class="rent">$960</h3>
-            </div>
-            <p class="listing_address">
-                2036 E Autumn St,
-                <br> Eagle Mountain, Ut 84005
-            </p>
-        </div>
+        
     </div>
 
 </div>
@@ -139,28 +107,42 @@
         window.location.href = '/search/' + searchQuery
     }//search()
 
+    /*
+    <div class="col-md-4 recent_listings ">
+        <img class="listing_img" src="/assets/images/building_template.jpg" alt="">
+        <div class="listing_head_info">
+            <h3 class="listing_title">Listing Title</h3>
+            <h3 class="rent">$960</h3>
+        </div>
+        <p class="listing_address">
+            2036 E Autumn St,
+            <br> Eagle Mountain, Ut 84005
+        </p>
+    </div>*/
 
     //$('#homepage_listings').append
     function showListings() {
+        var br = '<br>'
 
         $.ajax({
-            url: '/api/properties',
+            url: '/api/homepage_list',
         }).success(function (data) {
             console.log(data)
-            /*dt = data;
+            var dt = data.rows;
+            console.log(dt)
             console.log(dt.length)
             $(dt).each(function (i, val) {
                 console.log(val)
-                d = val
+                var d = val
 
                 var addLine2;
-                if (d.addressLine2 == null) {
+                if (d.Address.addressLine2 == null) {
                     addLine2 = '';
                 } else {
-                    addLine2 = d.addressLine2 + br
+                    addLine2 = d.Address.addressLine2 + br
                 }
-                $('#homepage_listings').append('<a href="/api/property/' + d.Property.id + '" class="col-sm-4 listing"><img src="/assets/images/building_template.jpg" alt=""><div class="listing_head_info"><h3 class="listing_title">' + d.Property.name + '</h3><h3 class="rent">$' + d.Property.price + '</h3></div><p class="listing_address">' + d.addressLine1 + br + addLine2 + d.city + ', ' + d.state + ' ' + d.zip + '</p></a>');
-            })*/
+                $('#homepage_listings').append('<a href="/api/property/' + d.id + '" class="col-sm-4 recent_listings"><img class="listing_img" src="/assets/images/building_template.jpg" alt="' + d.name + '"><div class="listing_head_info"><h3 class="listing_title">' + d.name + '</h3><h3 class="rent">$' + d.price + '</h3></div><p class="listing_address">' + d.Address.addressLine1 + br + addLine2 + d.Address.city + ', ' + d.Address.state + ' ' + d.Address.zip + '</p></a>');
+            })
         })
     } //showListings()
     showListings()

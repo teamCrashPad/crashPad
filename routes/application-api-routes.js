@@ -11,34 +11,58 @@ module.exports = function (app) {
     app.get("/api/fillApplication/:propId", function (req, res) {
         var propId = req.params.propId;
         localStorage.setItem("CPADpropId", propId);
-        //var myId = req.user.id;
+        var myId = req.user.id;
         console.log("filling app....");
-        var myId = 1;
         db.ApplicationTemplate.findOrCreate({
             include: [db.Tenant],
             where: {
                 tenantId: myId
             }
-        }).then(function (dbTemplate) {
-            console.log("...dbTemplate: ");
-            console.log(dbTemplate);
+        }).then(function (dbApplicationTemplate) {
+            //console.log("...dbApplicationTemplate: ");
+            //console.log(dbApplicationTemplate);
+            //res.json(dbApplicationTemplate);
             res.render("applicationDetail", {
-                mycomments: dbTemplate.comments,
-                pets:  dbTemplate.havePets,
-                smokes:  dbTemplate.isSmoker
+                mycomments: dbApplicationTemplate[0].comments,
+                pets: dbApplicationTemplate[0].havePets,
+                smokes: dbApplicationTemplate[0].isSmoker,
+                propIdNum: propId,
+                user: req.user,
+                userProfile: JSON.stringify(req.user, null, '  ')
+    
             });
         });
     });
 
+    app.put("/api/updateTemplate", function (req, res) {
+        console.log("... updating template ....")
+        console.log(req.body);
+        var myId = req.user.id;
+        var mydata = {
+            havePets: req.body.havePets,
+            isSmoker: req.body.isSmoker,
+            comments: req.body.comments
+        };
+        db.ApplicationTemplate.update(
+            mydata,
+            {
+                where: {
+                    tenantId: myId
+                }
+            }).then(function (dbApplicationTemplate) {
+            res.json(dbApplicationTemplate);
+        });
+    });
+
     app.post("/api/submitApplication", function (req, res) {
+        //console.log(req.body);
         var myId = req.user.id;
         var propId = localStorage.getItem("CPADpropId");
         var myApplication = {
-            tenantId: myId,
-            propertyId: propId
+            "TenantId": myId,
+            "PropertyId": propId
         };
-        //console.log(req.body);
-        db.Application.create(myApplication, {include: [db.Tenant, db.Property]}).then(function (dbApplication) {
+        db.Application.create(myApplication).then(function (dbApplication) {
             res.json(dbApplication);
         });
     });
