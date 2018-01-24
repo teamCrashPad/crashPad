@@ -23,15 +23,18 @@ module.exports = function (app) {
                 propId: dbProperty.id,
                 name: dbProperty.name,
                 price: dbProperty.price,
-                capacity:  dbProperty.capacity,
-                description:  dbProperty.description,
-                address1:  dbProperty.Address.dataValues.addressLine1,
-                address2:  dbProperty.Address.dataValues.addressLine2,
-                city:  dbProperty.Address.dataValues.city,
-                state:  dbProperty.Address.dataValues.state,
-                zip:  dbProperty.Address.dataValues.zip,
-                landlordEmail:  dbProperty.Landlord.dataValues.email,
-                landlord:  dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName
+                capacity: dbProperty.capacity,
+                description: dbProperty.description,
+                address1: dbProperty.Address.dataValues.addressLine1,
+                address2: dbProperty.Address.dataValues.addressLine2,
+                city: dbProperty.Address.dataValues.city,
+                state: dbProperty.Address.dataValues.state,
+                zip: dbProperty.Address.dataValues.zip,
+                landlordEmail: dbProperty.Landlord.dataValues.email,
+                landlord: dbProperty.Landlord.dataValues.firstName + " " + dbProperty.Landlord.dataValues.lastName,
+                user: req.user,
+                userProfile: JSON.stringify(req.user, null, '  ')
+
             });
         });
     });
@@ -68,4 +71,33 @@ module.exports = function (app) {
         });
 
     });
+    app.get("/api/application_property/:query", function (req, res) {
+        db.Property.findOne({
+            include: [db.Address],
+            where: {
+                id: req.params.query
+            }
+
+        }).then(function (data) {
+            console.log(data)
+            res.json(data);
+        });
+
+    });
+
+    app.get("/api/homepage_list", function (req, res) {
+        db.Property.findAndCountAll({
+            include: [
+                db.Address
+            ],
+            order: [['id', 'DESC']],
+            limit: 3
+
+        }).then(function (data) {
+            console.log(data)
+            res.json(data);
+        });
+
+    })
+
 };

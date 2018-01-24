@@ -1,32 +1,86 @@
 <link rel="stylesheet" href="/assets/css/application.css">
 <script src="/assets/js/applic.js"></script>
+<style>
+    #submit-app-button {
+        width: 100%;
+        margin-top: 15px;
+        text-transform: uppercase;
+        height: 50px;
+        font-size: 30px;
+    }
 
+    label,
+    input {
+        cursor: pointer;
+    }
+
+    #gMap_iframe {
+        width: 100%;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2><span class="glyphicon glyphicon-dashboard"></span> Application Form</h2>
+            <h2 class="text-center">
+                Submitting Application for
+                <span id="property"></span>
+            </h2>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a href="/api/property/{{propIdNum}}" id="propertyurl" target="_blank" >View Property</a>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-sm-12">
+                    <iframe id="gMap_iframe" class="googlemap" src="" allowfullscreen>
+                    </iframe>
+
+                </div>
+            </div>
+            <br>
             <div>
                 {{#if pets}}
-                    <input id="petsCheckBox" type="checkbox" checked>
-                {{else}}
-                    <input id="petsCheckBox" type="checkbox">
-                {{/if}}
+                <input id="petsCheckBox" type="checkbox" checked> {{else}}
+                <input id="petsCheckBox" type="checkbox"> {{/if}}
                 <label for="petsCheckBox">Check if you have pets.</label>
             </div>
             <div>
                 {{#if smokes}}
-                    <input id="smokesCheckBox" type="checkbox" checked>
-                {{else}}
-                    <input id="smokesCheckBox" type="checkbox">
-                {{/if}}
+                <input id="smokesCheckBox" type="checkbox" checked> {{else}}
+                <input id="smokesCheckBox" type="checkbox"> {{/if}}
                 <label for="smokesCheckBox">Check if you smoke.</label>
             </div>
             <br>
             <label for="comment">Comments </label>
-            <textarea class="form-control" style="height:100px" maxlength="1000"
-                      id="comment">{{mycomments}}</textarea>
+            <textarea class="form-control" style="height:100px" maxlength="1000" id="comment">{{mycomments}}</textarea>
+
+            <input class="btn btn-primary" type="submit" id="submit-app-button" value="Submit" />
+
         </div>
         <br>
-        <input class="btn" type="submit" id="submit-app-button" value="Submit"/>
     </div>
 </div>
+
+<script>
+    var addressIs;
+    var propUrl = 'api/property/{{propIdNum}}';
+    console.log(propUrl)
+    function showPropName() {
+        $.ajax({
+            url: '/api/application_property/{{propIdNum}}'
+        }).success(function (data) {
+            console.log(data)
+            var d = data;
+            $('#property').html(d.name + ' in&nbsp;' + d.Address.city + '&nbsp;' + d.Address.state)
+            addressIs = d.Address.addressLine1 + d.Address.city + d.Address.state + d.Address.zip;
+            addressIs = addressIs.replace(/\s+/g, '+');
+
+            $('#gMap_iframe').attr('src', 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDz9vAyuY21L37v5BVo_ZSE33_D9XrEwPI&q=' + addressIs + '&zoom=15')
+
+        });
+
+
+
+    }//showPropName();
+    showPropName();
+</script>

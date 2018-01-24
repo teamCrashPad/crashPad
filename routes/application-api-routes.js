@@ -25,7 +25,11 @@ module.exports = function (app) {
             res.render("applicationDetail", {
                 mycomments: dbApplicationTemplate[0].comments,
                 pets: dbApplicationTemplate[0].havePets,
-                smokes: dbApplicationTemplate[0].isSmoker
+                smokes: dbApplicationTemplate[0].isSmoker,
+                propIdNum: propId,
+                user: req.user,
+                userProfile: JSON.stringify(req.user, null, '  ')
+    
             });
         });
     });
