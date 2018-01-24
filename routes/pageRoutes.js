@@ -16,12 +16,13 @@ module.exports = function (app) {
     app.get("/landlord", requireLogin, requireLandlord, function (req, res) {
 
         db.Property.findAll({
-            include: [db.Landlord, db.Address],
+            include: [db.Landlord, db.Address, db.Application],
             where: {
                 LandlordId: req.user.id
             }
 
         }).then(function (data) {
+            
             var isProperties = data.length;
             var properties = data;
 

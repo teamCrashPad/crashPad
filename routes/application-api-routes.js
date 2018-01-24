@@ -6,7 +6,16 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 }
 
 module.exports = function (app) {
-    app.get("/api/findApplicant/:propId", function (req, res) {
+    app.get("/api/findApplicationTemplate/:tenantId", function (req, res) {
+        db.ApplicationTemplate.findAll({
+            include: [db.Tenant],
+            where: {
+                "TenantId": req.params.tenantId,
+            }
+        }).then(function(data){
+            console.log(data);
+            res.json(data);
+        })
     });
 
     app.get("/api/fillApplication/:propId", requireLogin, function (req, res) {

@@ -21,7 +21,7 @@
                         <div class="col-md-12" id="management-dashboard-side-panel">
                            <p id="dash-home">Dashboard Home</p>
                            <p id="manage-props">Manage Properties</p>
-                           <p id="manage-apps">Manage Applications</p>
+                           {{!-- <p id="manage-apps">Manage Applications</p> --}}
                         </div>
                     </div>
                    <div class="row">
@@ -30,8 +30,23 @@
                                <h2 class="text-center">Welcome to your dashboard, {{name}}!</h2>
                                <hr />
                                <br />
-                               <h4>What's New for Landlords:</h4>
+                               <h4><b>What's New for Landlords:</b></h4>
                                <p>Landlords are now able to easily add and manage their own properties. Your properties can be displayed to potential buyers via our search page where you can show off your pad.</p>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                            </div>
                            <div class="dash-body-div" id="manage-props-div">
                                {{#if isProperties}}
@@ -44,6 +59,7 @@
                                                         <th>Address</th>
                                                         <th>State</th>
                                                         <th>City</th>
+                                                        <th>Applications</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -53,6 +69,11 @@
                                                         <td data-toggle="modal" href='#modal-prop-details'>{{Address.addressLine1}}</td>
                                                         <td data-toggle="modal" href='#modal-prop-details'>{{Address.state}}</td>
                                                         <td data-toggle="modal" href='#modal-prop-details'>{{Address.city}}</td>
+                                                        {{#if Applications}}
+                                                        <td><span id="app-span" data-toggle="modal" href='#modal-app-details' data-prop-id="{{id}}" data-index="{{@index}}" style="color:green" title="{{Applications.length}} Application(s) Available" class="glyphicon glyphicon-inbox text-center"></span></td>
+                                                        {{else}}
+                                                        <td><span style="color:slategray" title="No Applications Available" class="glyphicon glyphicon-minus-sign"></span></td>
+                                                        {{/if}}
                                                     </tr>
                                                     {{/each}}
                                                 </tbody>
@@ -67,9 +88,11 @@
                                <button id="add-prop-button" type="button" class="btn btn-success" data-toggle="modal" href='#add-property-modal'><span class="glyphicon glyphicon-plus"></span> Add Property</button>
                                
                            </div>
-                           <div class="dash-body-div" id="manage-apps-div">
-                               <p>apps div</p>
-                           </div>
+                           {{!-- <div class="dash-body-div" id="manage-apps-div">
+                               
+                               
+                               
+                           </div> --}}
                        </div>
 
                    </div>
@@ -198,6 +221,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="view-details-page-button">View Details Page</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-app-details">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="app-detail-title">Applications</h4>
+                </div>
+                <div class="modal-body" id="modal-app-details-body">
+                    {{#if isProperties}}
+                        {{#each properties}}
+                            {{#if Applications}}
+
+                                {{#each Applications}}
+                                    <button style="width:100%; margin-bottom:10px;" class="btn btn-default view-apps-btn" id="application-view-button-{{@../index}}" style="display:none" type="button" data-propId="{{../id}}" data-tenantId="{{TenantId}}" data-app-id="{{id}}">Click to View this Application</button>
+                                    <br />
+                                {{/each}}
+                                
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
+                </div>
+                <div class="application-modal-footer">
                 </div>
             </div>
         </div>
