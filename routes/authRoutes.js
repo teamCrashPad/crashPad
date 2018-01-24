@@ -10,6 +10,8 @@ module.exports = function(app){
   }),
   function(req, res) {
     res.redirect(req.session.returnTo || '/');
+     req.session.returnTo = null;
+     delete req.session.returnTo;
   }
 );
 
