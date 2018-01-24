@@ -98,4 +98,14 @@
     var addressIs = '{{address1}} {{city}} {{state}} {{zip}}'
     addressIs = addressIs.replace(/\s+/g, '+');
     $('#gMap_iframe').attr('src', 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDz9vAyuY21L37v5BVo_ZSE33_D9XrEwPI&q=' + addressIs + '&zoom=15')
+
+    $('document').ready(function () {
+        var description = $('.homepage_content');
+        var metaDescription = description.text().substring(0, 180)
+
+
+        document.querySelector('#meta_title').innerHTML = '${{price}} - {{name}}';
+        $('#meta-description').attr('content', metaDescription+' - View More');
+
+    })
 </script>
