@@ -66,7 +66,7 @@ module.exports = function (app) {
             }
 
         }).then(function (data) {
-            console.log(data)
+            //console.log(data);
             res.json(data);
         });
 
@@ -79,7 +79,7 @@ module.exports = function (app) {
             }
 
         }).then(function (data) {
-            console.log(data)
+            //console.log(data);
             res.json(data);
         });
 
@@ -94,7 +94,7 @@ module.exports = function (app) {
             limit: 3
 
         }).then(function (data) {
-            console.log(data)
+            //console.log(data);
             res.json(data);
         });
 

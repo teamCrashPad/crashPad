@@ -12,11 +12,10 @@ module.exports = function (app) {
         var propId = req.params.propId;
         localStorage.setItem("CPADpropId", propId);
         var myId = req.user.id;
-        console.log("filling app....");
+        //console.log("filling app....myID: " + myId);
         db.ApplicationTemplate.findOrCreate({
-            include: [db.Tenant],
             where: {
-                tenantId: myId
+                "TenantId": myId
             }
         }).then(function (dbApplicationTemplate) {
             //console.log("...dbApplicationTemplate: ");
@@ -35,7 +34,7 @@ module.exports = function (app) {
     });
 
     app.put("/api/updateTemplate", function (req, res) {
-        console.log("... updating template ....")
+        console.log("... updating template ....");
         console.log(req.body);
         var myId = req.user.id;
         var mydata = {
