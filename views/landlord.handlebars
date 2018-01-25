@@ -239,7 +239,7 @@
                             {{#if Applications}}
 
                                 {{#each Applications}}
-                                    <button style="width:100%; margin-bottom:10px;" class="btn btn-default view-apps-btn" id="application-view-button-{{@../index}}" style="display:none" type="button" data-propId="{{../id}}" data-tenantId="{{TenantId}}" data-app-id="{{id}}">Click to View this Application</button>
+                                    <button style="width:100%; margin-bottom:10px;" class="btn btn-default view-apps-btn application-view-button-{{@../index}}" id="application-view-button-{{@../index}}" style="display:none" type="button" data-propId="{{../id}}" data-tenantId="{{TenantId}}" data-app-id="{{id}}">Click to View this Application</button>
                                     <br />
                                 {{/each}}
                                 

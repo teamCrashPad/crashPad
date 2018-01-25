@@ -34,7 +34,7 @@ $(document).ready(function(){
     })
 
     $(document).on("click", "#app-span", function(){
-        $(`#application-view-button-${$(this).attr("data-index")}`).show();
+        $(`.application-view-button-${$(this).attr("data-index")}`).show();
     })
 
     $('#modal-app-details').on('hidden.bs.modal', function () {
