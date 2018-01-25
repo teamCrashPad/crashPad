@@ -1,8 +1,9 @@
 
 module.exports = (req, res, next) => {
-	req.session.returnTo = req.originalUrl; 
 	if (!req.user) {
+		req.session.returnTo = req.originalUrl; 
 		return res.status(401).redirect('/login');
+
 	}
 
 	next();

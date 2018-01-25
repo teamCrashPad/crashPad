@@ -20,6 +20,8 @@ module.exports = function(app){
 	});
 
   app.get('/api/logout', (req, res) => {
+    req.session.returnTo = null;
+     delete req.session.returnTo;
     req.logout();
     res.redirect('/');
   });
