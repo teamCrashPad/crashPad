@@ -52,7 +52,10 @@ module.exports = function (app) {
             } else {
                 res.render("propertyDetail", {
                     alreadyAppliedMsg: "You have already Applied to this Property",
-                    notApplied: false
+                    notApplied: false,
+                    user: req.user,
+                    userProfile: JSON.stringify(req.user, null, '  ')
+
                 });
             }
         }, function (error) {
