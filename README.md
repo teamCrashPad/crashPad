@@ -2,6 +2,8 @@
 ----
 ## crashPad web app
 ----
+![CrashPadLogo](/public/assets/Images/crashpad_logo_transparent.png)
+----
 [CrashPad Website](http://www.studentcrashpads.com/)
 
 * Potential tenants can search for properties to live in for college
