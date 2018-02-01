@@ -2,7 +2,7 @@
 ----
 ## crashPad web app
 ----
-![CrashPadLogo](./public/assets/Images/crashpad_logo_transparent.png)
+![CrashPadLogo](/public/assets/images1/crashpad_logo_transparent.png)
 ----
 [CrashPad Website](http://www.studentcrashpads.com/)
 
