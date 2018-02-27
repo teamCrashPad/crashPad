@@ -15,7 +15,7 @@ var expect = require("chai").expect;
 	    done();
 	  })
 	  .catch(function(error) {
-	    console.error("Search failed:", error);
+	    console.error("SearchForms failed:", error);
 	  });
 
 });
