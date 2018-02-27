@@ -20,3 +20,21 @@ Because StudentCrashPads is still in development, it is likely that your search 
 If you are a landlord, you will need to create a landlord account in order to create listings for your housing. You can do this by navigating to the log in page, creating a new account, and checking the landlord check box. This will give you access to the landlord dashboard, where you can create and manage all of your properties. You can also view applications that have been sent in by students, and accept or deny them.
 
 
+Stack:
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10",
+    "mocha": "^5.0.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.1",
+    "nightmare": "^2.10.0",
+    "node-localstorage": "^1.3.0",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.1",
+    "sequelize": "^4.29.2"
+
+
+
