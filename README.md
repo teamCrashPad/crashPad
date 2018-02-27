@@ -21,20 +21,30 @@ If you are a landlord, you will need to create a landlord account in order to cr
 
 
 Stack:
-    "body-parser": "^1.18.2",
-    "chai": "^4.1.2",
-    "cookie-session": "^2.0.0-beta.3",
-    "express": "^4.16.2",
-    "express-handlebars": "^3.0.0",
-    "method-override": "^2.3.10",
-    "mocha": "^5.0.0",
-    "mysql": "^2.15.0",
-    "mysql2": "^1.5.1",
-    "nightmare": "^2.10.0",
-    "node-localstorage": "^1.3.0",
-    "passport": "^0.4.0",
-    "passport-auth0": "^0.6.1",
-    "sequelize": "^4.29.2"
+
+### 1.1 Front-End </br>
+HTML/CSS </br>
+Bootstrap Framework </br>
+Javascript </br>
+JQuery </br>
+HandleBars.js </br>
+
+
+### 1.2 Back-End </br>
+body-parser ^1.18.2</br>
+Express ^4.16.2</br>
+cookie-session ^2.0.0-beta.3 </br>
+mysql ^2.15.0 </br>
+mysql2 ^2.15.0 </br>
+node-localstorage ^1.3.0</br>
+passport ^0.4.0 </br>
+passport-auth0 ^0.6.1 </br>
+sequelize ^4.29.2 </br>
+
+### 1.2 Testing </br>
+chai ^4.1.2 </br>
+mocha ^5.0.0 </br>
+nightmare ^2.10.0 </br>
 
 
 
